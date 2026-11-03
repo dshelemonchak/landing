@@ -116,7 +116,7 @@ Static site, **no build step, no dependencies**.
 ```
 /index.html                  # all content, semantic HTML (header, main > section per layer, footer)
 /assets/styles.css           # tokens, layout, layers, spine, dark theme, reduced-motion
-/assets/stack.js             # packet, status chip, count-up (~100 lines, no libs, progressive enhancement)
+/assets/stack.js             # packet, status chip, count-up (~300 lines, no libs, progressive enhancement; includes the 836-field canvas)
 /assets/favicon.svg          # a small packet-on-a-line mark
 /assets/og.png               # 1200×630 social preview (generated from the page via Playwright)
 /.nojekyll
@@ -127,7 +127,7 @@ Static site, **no build step, no dependencies**.
   numbers as real text (not CSS counters) so screen readers and ATS-style crawlers read them.
 - SEO/share: `<title>Danylo Shelemonchak — Full-stack engineer (Angular · Java Spring)</title>`, meta description,
   Open Graph + Twitter card, `lang="en"`, canonical URL, JSON-LD `Person`.
-- Performance budget: HTML+CSS+JS < 40 KB gzipped, no external requests, Lighthouse ≥ 95 in all four categories.
+- Performance budget: HTML+CSS+JS < 50 KB gzipped, no external requests, Lighthouse ≥ 95 in all four categories.
 - Deploy: workflow `actions/upload-pages-artifact` + `actions/deploy-pages` on push to `main`.
   **One manual step for Danylo:** repo Settings → Pages → Source = "GitHub Actions". Work happens on
   `claude/magical-darwin-xc8fjg`; it reaches Pages after it is merged to `main`.

@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Danylo Shelemonchak — Full-stack engineer (Angular · Java Spring)</title>
+<meta name="description" content="Full-stack engineer, 6 years of SaaS in fintech, healthcare and education. Angular on the front, Java Spring Boot behind it. Remote from Ukraine.">
+<meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1214" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://dshelemonchak.github.io/landing/">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Danylo Shelemonchak — Full-stack engineer">
+<meta property="og:description" content="A request travels from the browser to the database. Every layer on the way is something I have shipped.">
+<meta property="og:url" content="https://dshelemonchak.github.io/landing/">
+<meta property="og:image" content="https://dshelemonchak.github.io/landing/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="assets/styles.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Danylo Shelemonchak","jobTitle":"Full-stack engineer","url":"https://dshelemonchak.github.io/landing/","sameAs":["https://www.linkedin.com/in/danylo-shelemonchak","https://t.me/dshelemonchak"],"knowsAbout":["Angular","TypeScript","Java","Spring Boot","Spring Security","SQL"]}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#contact">Skip to contact</a>
+
+<!-- status bar: the request, as it travels -->
+<div class="bar" role="status" aria-live="off">
+  <span class="bar__req"><i class="bar__dot" aria-hidden="true"></i>GET /landing</span>
+  <span class="bar__layer" id="barLayer" aria-hidden="true">↓ 00 REQUEST</span>
+  <a class="bar__cta" href="#contact">Contact</a>
+  <span class="bar__progress" id="barProgress" aria-hidden="true"></span>
+</div>
+
+<main class="stack" id="stack">
+  <div class="spine" aria-hidden="true"><i class="packet" id="packet"></i></div>
+
+  <!-- 00 REQUEST -->
+  <section class="hero" id="top" data-layer="00 REQUEST" aria-labelledby="h1">
+    <p class="eyebrow reveal">Full-stack engineer · Angular + Java Spring · Remote from Ukraine</p>
+    <h1 id="h1" class="reveal"><span>Danylo</span> <span>Shelemonchak</span></h1>
+    <p class="lede reveal">Six years of SaaS in fintech, healthcare and education. I own a feature from the first investigation to production — across the browser, the API and the database.</p>
+
+    <figure class="term reveal" aria-label="HTTP request and response describing me">
+      <pre id="term"><span class="t t-cmd"><b>$</b> curl -i https://dshelemonchak.github.io/landing/</span>
+<span class="t t-ok">HTTP/2 200 OK</span>
+<span class="t"><em>content-type:</em> engineer/full-stack</span>
+<span class="t"><em>x-experience:</em> 6 years, commercial</span>
+<span class="t"><em>x-front:</em> Angular 16–21, TypeScript, RxJS, Signals</span>
+<span class="t"><em>x-back:</em> Java 17, Spring Boot 3, Spring Security</span>
+<span class="t"><em>x-domains:</em> fintech, healthcare, education</span>
+<span class="t"><em>x-languages:</em> uk (native), en (B2)</span>
+<span class="t"><em>x-location:</em> Ukraine; remote, international teams</span>
+<span class="t t-mute">scroll to follow the request ↓</span></pre>
+    </figure>
+  </section>
+
+  <!-- 01 BROWSER -->
+  <section class="layer" id="ui" data-layer="01 BROWSER" aria-labelledby="h-ui">
+    <header class="layer__head">
+      <p class="layer__no">01</p>
+      <h2 id="h-ui">Browser</h2>
+      <ul class="tags" aria-label="Technologies">
+        <li>Angular 16–21</li><li>TypeScript</li><li>RxJS</li><li>Signals</li><li>Standalone components</li><li>React</li><li>SCSS</li><li>a11y</li><li>i18n</li>
+      </ul>
+    </header>
+    <div class="layer__body">
+      <div class="stats">
+        <div class="stat reveal">
+          <p class="big" data-count="47">47</p>
+          <p class="cap">standalone Angular components in one library. I was its principal contributor.</p>
+        </div>
+        <div class="stat reveal">
+          <p class="big" data-count="48">48</p>
+          <p class="cap">feature pages built on one base page component I worked on.</p>
+        </div>
+      </div>
+
+      <div class="tiles" id="tiles" aria-hidden="true"></div>
+      <div class="pages" aria-hidden="true">
+        <span class="pages__bar">BasePage</span>
+        <span class="pages__ticks" id="ticks"></span>
+      </div>
+      <p class="note reveal">Moved the codebase to standalone components, Signals and zoneless change detection.</p>
+
+      <div class="formviz reveal">
+        <div class="formviz__head">
+          <p class="big big--s"><span data-count="836">836</span><small> fields</small></p>
+          <p class="cap"><b>50</b> subforms and <b>139</b> cross-field formulas in a single financial form. I co-developed it and implemented about a third myself.</p>
+        </div>
+        <canvas id="formcv" role="img" aria-label="836 small squares, one per form field. About a third are highlighted: the ones I implemented. 139 are outlined: the cross-field formulas."></canvas>
+        <p class="legend" aria-hidden="true">
+          <span><i class="k k-mine"></i>implemented by me, ≈ ⅓</span>
+          <span><i class="k k-team"></i>team</span>
+          <span><i class="k k-formula"></i>formula (139)</span>
+        </p>
+        <p class="hint"><span class="hint__touch">Tap</span><span class="hint__mouse">Hover or click</span> the grid — a change in one field ripples through its formulas.</p>
+      </div>
+    </div>
+  </section>
+
+  <aside class="link reveal" aria-label="Connection between browser and server">
+    <p class="link__lbl">UI ↔ SERVER</p>
+    <p class="link__txt">The financial rules exist twice — in TypeScript and in Java. The browser and the server can’t disagree about a number.</p>
+  </aside>
+
+  <!-- 02 HTTP -->
+  <section class="layer" id="http" data-layer="02 HTTP" aria-labelledby="h-http">
+    <header class="layer__head">
+      <p class="layer__no">02</p>
+      <h2 id="h-http">HTTP</h2>
+      <ul class="tags"><li>REST</li><li>ETag</li><li>Cache-Control</li></ul>
+    </header>
+    <div class="layer__body">
+      <p class="lead reveal">The cheapest request is the one that returns <code>304</code>.</p>
+      <p class="note reveal">Server-side caching with <code>ETag</code> and <code>Cache-Control</code>, revision-aware invalidation and server-generated routing data. Bar width = size of the response body.</p>
+
+      <ol class="reqs" id="reqs" aria-label="Illustrative sequence of requests">
+        <li class="rq rq--200"><span class="rq__code">200</span><span class="rq__bar"></span><span class="rq__why">first visit — full payload</span></li>
+        <li class="rq rq--304"><span class="rq__code">304</span><span class="rq__bar"></span><span class="rq__why">unchanged — no body</span></li>
+        <li class="rq rq--304"><span class="rq__code">304</span><span class="rq__bar"></span><span class="rq__why">unchanged — no body</span></li>
+        <li class="rq rq--200"><span class="rq__code">200</span><span class="rq__bar"></span><span class="rq__why">revision bumped — fresh data</span></li>
+        <li class="rq rq--304"><span class="rq__code">304</span><span class="rq__bar"></span><span class="rq__why">unchanged — no body</span></li>
+      </ol>
+
+      <div class="gauge reveal" id="gauge">
+        <svg viewBox="0 0 140 140" aria-hidden="true">
+          <circle class="gauge__track" cx="70" cy="70" r="56"/>
+          <circle class="gauge__arc" id="gArc" cx="70" cy="70" r="56" transform="rotate(-90 70 70)"/>
+        </svg>
+        <p class="gauge__num" id="gNum" aria-label="Lighthouse score from about 20 to 75–80">75–80</p>
+        <p class="gauge__cap"><b id="gTag">Lighthouse</b> — up from ~20, through data-loading optimisations I contributed to.</p>
+      </div>
+    </div>
+  </section>
+
+  <aside class="link reveal" aria-label="Connection between HTTP and security">
+    <p class="link__lbl">HTTP ↔ SECURITY</p>
+    <p class="link__txt">Registration, password reset, email confirmation and access rules — extended for white-labelled products.</p>
+  </aside>
+
+  <!-- 03 SECURITY -->
+  <section class="layer" id="security" data-layer="03 SECURITY" aria-labelledby="h-sec">
+    <header class="layer__head">
+      <p class="layer__no">03</p>
+      <h2 id="h-sec">Security</h2>
+      <ul class="tags"><li>Spring Security</li><li>JWT</li><li>Role-based access</li></ul>
+    </header>
+    <div class="layer__body">
+      <p class="lead reveal">Identity flows for products with their own brand.</p>
+      <ol class="flow reveal" aria-label="Flows extended in Spring Security">
+        <li><b>Register</b></li>
+        <li><b>Confirm email</b><small>JavaMail + Thymeleaf</small></li>
+        <li><b>Sign in</b><small>JWT</small></li>
+        <li><b>Access rules</b><small>per product</small></li>
+        <li class="flow__alt"><b>Reset password</b></li>
+      </ol>
+      <p class="token reveal" aria-label="Illustration of a JWT: header, payload, signature"><span class="tk1">eyJhbGciOiJIUzI1NiJ9</span><i>.</i><span class="tk2">eyJyb2xlIjoiYWRtaW4ifQ</span><i>.</i><span class="tk3">sig</span><small>illustration — header · payload · signature</small></p>
+    </div>
+  </section>
+
+  <aside class="link reveal" aria-label="Connection between security and server">
+    <p class="link__lbl">SECURITY ↔ SERVER</p>
+    <p class="link__txt">A request that gets past the rules reaches code that fails predictably.</p>
+  </aside>
+
+  <!-- 04 SERVER -->
+  <section class="layer" id="server" data-layer="04 SERVER" aria-labelledby="h-srv">
+    <header class="layer__head">
+      <p class="layer__no">04</p>
+      <h2 id="h-srv">Server</h2>
+      <ul class="tags"><li>Java 17</li><li>Spring Boot 3</li><li>REST APIs</li><li>JavaMail</li><li>Thymeleaf</li></ul>
+    </header>
+    <div class="layer__body">
+      <p class="lead reveal">One exception handler. Every error has one shape.</p>
+      <pre class="code reveal" aria-label="Illustration of a structured error response"><code><span class="c-mute">// illustration — a structured error response</span>
+{
+  <span class="c-k">"status"</span>: <span class="c-n">422</span>,
+  <span class="c-k">"error"</span>:  <span class="c-s">"VALIDATION_FAILED"</span>,
+  <span class="c-k">"fields"</span>: [ <span class="c-s">"email"</span> ],
+  <span class="c-k">"path"</span>:   <span class="c-s">"/api/…"</span>
+}</code></pre>
+      <p class="note reveal">Centralised exception handling with structured error responses. Backend work across all three projects: endpoints, role-based access, localisation, business logic.</p>
+    </div>
+  </section>
+
+  <aside class="link reveal" aria-label="Connection between server and data">
+    <p class="link__lbl">SERVER ↔ DATA</p>
+    <p class="link__txt">A duplicate-records bug is a data problem first and a UI problem last. I followed it all the way down.</p>
+  </aside>
+
+  <!-- 05 DATA -->
+  <section class="layer" id="data" data-layer="05 DATA" aria-labelledby="h-data">
+    <header class="layer__head">
+      <p class="layer__no">05</p>
+      <h2 id="h-data">Data</h2>
+      <ul class="tags"><li>Spring Data JPA</li><li>SQL</li><li>Jest</li></ul>
+    </header>
+    <div class="layer__body">
+      <p class="lead reveal">Tables, JPA mappings, business logic — and one data-integrity bug, closed.</p>
+      <table class="rows reveal" id="rows" aria-label="Illustration: duplicate records found and resolved">
+        <thead><tr><th>id</th><th>plan</th><th>rev</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>101</td><td>A</td><td>7</td><td></td></tr>
+          <tr class="r-a"><td>102</td><td>B</td><td>7</td><td></td></tr>
+          <tr><td>103</td><td>C</td><td>7</td><td></td></tr>
+          <tr class="r-b"><td>104</td><td>B</td><td>7</td><td class="r-badge">duplicate → resolved</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <aside class="link reveal" aria-label="Around the whole stack">
+    <p class="link__lbl">THE WHOLE STACK</p>
+    <p class="link__txt">What isn’t on any layer, but decides whether the system holds together.</p>
+  </aside>
+
+  <!-- 06 AROUND -->
+  <section class="layer" id="around" data-layer="06 AROUND THE STACK" aria-labelledby="h-around">
+    <header class="layer__head">
+      <p class="layer__no">06</p>
+      <h2 id="h-around">Around the stack</h2>
+    </header>
+    <div class="layer__body">
+      <ul class="facts">
+        <li class="reveal"><b>Ownership.</b> From investigation and technical decision to implementation, review and production delivery.</li>
+        <li class="reveal"><b>People.</b> Code review and mentoring a junior developer. Remote work with international teams.</li>
+        <li class="reveal"><b>AI-assisted, human-accountable.</b> I use Claude Code for scoped implementation and investigation. Security, quality and maintainability stay my responsibility.</li>
+        <li class="reveal"><b>Domains.</b> Complex financial workflows, reusable component systems, backend integrations, performance.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 07 TRACK RECORD -->
+  <section class="layer" id="track" data-layer="07 TRACK RECORD" aria-labelledby="h-track">
+    <header class="layer__head">
+      <p class="layer__no">07</p>
+      <h2 id="h-track">Track record</h2>
+      <p class="mono-s">Altronica — outstaff, remote<br>Aug 2020 – Sep 2026</p>
+    </header>
+    <div class="layer__body">
+      <ol class="tl">
+        <li class="reveal">
+          <p class="tl__when">Sep 2022 – Sep 2026</p>
+          <h3>Senior Frontend Developer</h3>
+          <p class="tl__what">Fintech · Financial Planning SaaS <span class="nda">(NDA)</span></p>
+          <p>The Angular library, the 836-field form, white-label security flows, ETag caching in Spring Boot.</p>
+        </li>
+        <li class="reveal">
+          <p class="tl__when">Oct 2021 – Aug 2022</p>
+          <h3>Full-Stack Developer</h3>
+          <p class="tl__what">Healthcare · React CRM for nursing homes</p>
+          <p>Responsive React for desktop and iPad; Spring tables, JPA mappings, REST APIs and business logic; recurring procedures, image pickers, Jest tests.</p>
+        </li>
+        <li class="reveal">
+          <p class="tl__when">Oct 2020 – Sep 2021</p>
+          <h3>Frontend Developer</h3>
+          <p class="tl__what">Education · CRM for language schools</p>
+          <p>Chat, scheduling, attendance, search; REST endpoints, role-based access and localisation in Spring; MDB → ng-bootstrap migration.</p>
+        </li>
+      </ol>
+      <p class="edu reveal"><b>Education.</b> M.Sc. System Analysis, National Aerospace University “KhAI” (2022–2024). B.Sc. System Analysis (2018–2022).</p>
+    </div>
+  </section>
+
+  <!-- RESPONSE -->
+  <section class="resp" id="contact" data-layer="200 OK" aria-labelledby="h-contact">
+    <p class="resp__code reveal"><span>200</span> OK</p>
+    <h2 id="h-contact" class="reveal">The response is a conversation.</h2>
+    <ul class="contacts reveal">
+      <li><a href="https://t.me/dshelemonchak" rel="noopener">Telegram<span>@dshelemonchak</span></a></li>
+      <li><a href="https://www.linkedin.com/in/danylo-shelemonchak" rel="noopener">LinkedIn<span>/in/danylo-shelemonchak</span></a></li>
+      <li><a href="mailto:shelemonchakdanil@gmail.com">Email<span>shelemonchakdanil@gmail.com</span></a>
+        <button type="button" class="copy" id="copyMail" data-mail="shelemonchakdanil@gmail.com">Copy</button></li>
+    </ul>
+    <p class="foot">Built by hand: HTML, CSS and a little vanilla JavaScript. No framework, no trackers, no external requests. <a href="https://github.com/dshelemonchak/landing" rel="noopener">View source</a>.</p>
+  </section>
+</main>
+
+<script src="assets/stack.js" defer></script>
+</body>
+</html>
