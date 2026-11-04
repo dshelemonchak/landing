@@ -1,4 +1,4 @@
-// Generated from the approved V6 design by convert_dc.py, then hand-edited for contacts.
+// Landing page app (Preact + htm). Design direction: see DESIGN.md.
 import { h, render, Component } from './vendor/preact.module.js';
 import htm from './vendor/htm.module.js';
 const html = htm.bind(h);
@@ -100,20 +100,17 @@ class App extends Component {
     const base = this.blk('', 0, 97, 0, 250, 14, 220, '#14535B', '#0F4249', '#1E6D75', '#E3F1F0', 16, SC);
     o.push(base);
     const T = base.topY;
-    o.push(this.on('~20', -35, T, -55, 56, 30, 50, '#2B6068', '#1F4A50', '#3D8088', '#E3F1F0', 24, SC));
-    o.push(this.on('75–80', 35, T, -55, 56, 90, 50, '#7FDED6', '#4FB0A8', '#B5F2EC', DK, 24, SC));
-    o.push(this.blk('Page speed score', 0, -40, -55, 150, 26, 6, '#E3F1F0', '#9FC3C0', '#FFFFFF', DK, 18, SC));
-    const app = this.on('App', -90, T, 55, 56, 56, 56, '#E3F1F0', '#9FC3C0', '#FFFFFF', DK, 24, SC);
+    const app = this.on('App', -90, T, 0, 56, 56, 56, '#E3F1F0', '#9FC3C0', '#FFFFFF', DK, 24, SC);
     o.push(app);
-    o.push(this.on('Cache', 0, T, 55, 56, 56, 56, '#7FDED6', '#4FB0A8', '#B5F2EC', DK, 24, SC));
-    o.push(this.on('API', 90, T, 55, 56, 56, 56, '#F0C979', '#B8934A', '#F8E3B0', DK, 24, SC));
+    o.push(this.on('Cache', 0, T, 0, 56, 56, 56, '#7FDED6', '#4FB0A8', '#B5F2EC', DK, 24, SC));
+    o.push(this.on('API', 90, T, 0, 56, 56, 56, '#F0C979', '#B8934A', '#F8E3B0', DK, 24, SC));
     const my = (app.topY + app.botY) / 2;
-    o.push(this.blk('', -45, my, 55, 32, 4, 4, '#7FDED6', '#4FB0A8', '#B5F2EC', DK, 12, SC));
-    o.push(this.blk('', 45, my, 55, 32, 4, 4, '#7FDED6', '#4FB0A8', '#B5F2EC', DK, 12, SC));
+    o.push(this.blk('', -45, my, 0, 32, 4, 4, '#7FDED6', '#4FB0A8', '#B5F2EC', DK, 12, SC));
+    o.push(this.blk('', 45, my, 0, 32, 4, 4, '#7FDED6', '#4FB0A8', '#B5F2EC', DK, 12, SC));
     const xs = [-90, 0, 90, 0, -90, 0, -90], sz = [12, 12, 12, 18, 18, 12, 8];
     const s = sz[net], full = net === 3 || net === 4, back = net === 6;
     const col = full ? ['#F0C979', '#B8934A', '#F8E3B0'] : (back ? ['#F0C979', '#B8934A', '#F8E3B0'] : ['#FFFFFF', '#9FC3C0', '#FFFFFF']);
-    const pk = this.blk('', xs[net], app.topY - 1 - s / 2, 55, s, s, s, ...col, DK, 12, SC);
+    const pk = this.blk('', xs[net], app.topY - 1 - s / 2, 0, s, s, s, ...col, DK, 12, SC);
     pk.td = '1s';
     o.push(pk);
     return o;
@@ -234,7 +231,7 @@ class App extends Component {
     ];
     const gap = st.open ? 74 : 38, seen = st.seenW, net = st.net;
     const viewNames = ['Dashboard', 'Form', 'Report'];
-    const netCaption = net === 0 ? 'A request starts in the app and heads for the data.' : (net <= 4 ? 'First visit: the cache has nothing yet, so the request goes all the way to the API and the full answer comes back.' : 'Next visit: the cache already has it, so only what changed is sent. Smaller, faster.');
+    const netCaption = net === 0 ? 'A request starts in the app and heads for the data.' : (net <= 4 ? 'First visit: the cache has nothing yet, so the request goes all the way to the API and the full answer comes back.' : 'Next visit: the data has not changed, so the server only confirms the copy is still fresh. Nothing is downloaded again.');
     const W = [
       { id: 'studio', no: '01', layer: 'Frontend', title: 'Interfaces people can rely on.', font: 'Manrope, sans-serif', bg: '#F6F5F1', fg: '#111111', kicker: '#55555A', panelBg: 'transparent', panelPad: '0', chipBg: '#111111', chipFg: '#F6F5F1', hShadow: 'none',
         sell: 'Angular in production for fintech and education, React for healthcare. I build screens from shared components, so every new page ships faster and looks and behaves like the rest of the product.',
@@ -244,21 +241,21 @@ class App extends Component {
         caption: 'One app shell, views swap in place with no page reload, and every piece comes from the shared library.',
         rx: -16, ry: -26, cubes: this.cubesStudio(st.view) },
       { id: 'signal', no: '02', layer: 'Network', title: 'Fast, responsive apps.', font: "'Saira Condensed', sans-serif", bg: '#0B2A30', fg: '#E3F1F0', kicker: '#9FD0CC', panelBg: 'transparent', panelPad: '0', chipBg: '#E3F1F0', chipFg: '#0B2A30', hShadow: '0 0 18px rgba(127,222,214,.3)',
-        sell: 'I design REST APIs and caching together, so pages open quickly, stay responsive, and the server only sends what actually changed.',
+        sell: 'I design REST APIs and caching together, so pages open quickly, stay responsive, and repeat visits skip downloading data that has not changed.',
         skills: ['REST APIs', 'HTTP caching', 'Performance'],
-        details: ['Server‑side caching with ETag and Cache‑Control, revision‑aware invalidation and server‑generated routing data.', 'Helped lift the Lighthouse performance score from about 20 to 75–80 through data‑loading optimisations.', 'Consistent REST resources with structured error responses.'],
-        artLabel: 'A 3D console: a packet travels from App to Cache to API and back, then a second time from App to Cache and back with a smaller answer; two columns show the page speed score rising from about 20 to 75 to 80',
-        caption: netCaption + ' Page speed score (Lighthouse): I helped raise it from about 20 to 75–80.',
+        details: ['Server‑side caching with ETag and Cache‑Control, revision‑aware invalidation and server‑generated routing data.', 'Consistent REST resources with structured error responses.'],
+        artLabel: 'A 3D console: a packet travels from App to Cache to API and back, then a second time from App to Cache and back with a smaller answer',
+        caption: netCaption,
         rx: -20, ry: 28, cubes: this.cubesSignal(net) },
       { id: 'gate', no: '03', layer: 'Security', title: 'The right people, the right access.', font: "'EB Garamond', serif", bg: '#EFE5CF', fg: '#2B2117', kicker: '#7A1F1A', panelBg: 'transparent', panelPad: '0', chipBg: '#7A1F1A', chipFg: '#F7EFDC', hShadow: 'none',
-        sell: 'Authentication and access rules for products sold under several brands, built with Spring Security and JWT. Every entry is checked, like a castle with one well‑guarded gate.',
+        sell: 'Authentication and access rules for products sold under several brands, built with Spring Security and JWT. Every request is checked at the entrance, and role rules decide what each user can see and do.',
         skills: ['Spring Security', 'JWT', 'Role‑based access'],
         details: ['Extended Spring Security for white‑label products: registration, password reset, email confirmation and access rules.', 'Role‑based access and localisation on the language‑school CRM.'],
         artLabel: 'A 3D castle on an island with towers, keep, banners, a sunken moat, a drawbridge and a gate, with hills and distant towers behind',
-        caption: 'Illustration: moat, drawbridge and gate. Every request is checked at the door.',
+        caption: 'Every request shows a signed token at the gate; role rules then decide which rooms it may enter.',
         hasHills: true, rx: -18, ry: -24, cubes: this.cubesGate() },
       { id: 'blocks', no: '04', layer: 'Backend', title: 'Java backends, built to last.', font: "'Pixelify Sans', monospace", bg: '#2E2018', fg: '#F7EDE0', kicker: '#EAC39C', panelBg: '#24180F', panelPad: '30px 32px', chipBg: '#F7EDE0', chipFg: '#2E2018', hShadow: 'none',
-        sell: 'Spring Boot services in clear layers, with predictable errors and business rules that match the frontend to the number.',
+        sell: 'Spring Boot services in clear layers, with predictable errors and the same calculation rules in Java and Angular, so totals always agree.',
         skills: ['Java 17', 'Spring Boot 3', 'REST', 'JavaMail', 'Thymeleaf'],
         details: ['Centralised exception handling with structured error responses.', 'Implemented financial calculation rules and mirrored critical logic in Java so client and server agree.', 'Spring REST endpoints and business logic on all three products.'],
         artLabel: 'Three stacked 3D layers, Controller, Service and Repository, each with a channel down the middle; a request passes through all three, with a tag for central error handling',
@@ -284,11 +281,10 @@ class App extends Component {
       return { ...a, left: atEnd ? '100%' : '0%', tx: atEnd ? '-100%' : '0%', op: A >= 1 ? 1 : 0, bg: handed ? 'transparent' : a.color, fg: handed ? a.color : '#1E3A3C', ring: handed ? 'inset 0 0 0 2px ' + a.color : 'none', note, noteOp: note ? 1 : 0 };
     });
     const T = [
-      { big: '47', label: 'Angular components, as principal contributor', clip: 'polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)', flex: '1 1 260px', bs: 64, nsz: '56px' },
-      { big: '~20 → 75–80', label: 'page speed score (Lighthouse), which I helped raise', clip: 'circle(50%)', flex: '1 1 300px', bs: 64, nsz: '36px' },
-      { big: '836', label: 'fields in one financial form I co‑built, about a third mine', clip: 'polygon(50% 0, 100% 50%, 50% 100%, 0 50%)', flex: '2 1 420px', bs: 96, nsz: 'clamp(60px, 7vw, 96px)' }
+      { big: '47', label: 'Angular components in a shared library, as the main contributor', clip: 'polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)', flex: '1 1 260px', bs: 64, nsz: '56px' },
+      { big: '836', label: 'fields in one financial form; I built about a third of them', clip: 'polygon(50% 0, 100% 50%, 50% 100%, 0 50%)', flex: '2 1 420px', bs: 96, nsz: 'clamp(60px, 7vw, 96px)' }
     ];
-    const trophies = T.map((t, i) => { const on = st.tr > i; return { ...t, status: on ? 'Unlocked' : 'Locked', nc: on ? (i === 2 ? '#E9A93B' : '#EEEBE4') : '#8B8E96', bb: on ? '#E9A93B' : '#3A3D44', sc: on ? 1 : 0.85 }; });
+    const trophies = T.map((t, i) => { const on = st.tr > i; return { ...t, status: on ? 'Shipped' : '\u00a0', nc: on ? (i === 2 ? '#E9A93B' : '#EEEBE4') : '#8B8E96', bb: on ? '#E9A93B' : '#3A3D44', sc: on ? 1 : 0.85 }; });
     return {
       rx: st.rx, ry: Math.max(-80, Math.min(80, st.ry + st.spin)),
       explodeLabel: st.open ? 'Collapse' : 'Explode',
@@ -309,16 +305,16 @@ class App extends Component {
     const v = this.renderVals();
     return html`<div style="position: relative; width: 100%; background: #111214; color: #EEEBE4; font-family: Manrope, sans-serif;">
 
-  <header style="position: relative; overflow: hidden; min-height: 820px; box-sizing: border-box; padding: 0 clamp(20px, 6vw, 80px) 56px; display: flex; flex-direction: column;">
+  <header style="position: relative; overflow: hidden; min-height: 820px; box-sizing: border-box; padding: 0 max(clamp(20px, 6vw, 80px), calc((100% - 1000px) / 2)) 56px; display: flex; flex-direction: column;">
     <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid #2A2C31; font-size: 16px;">
-      <span><b>Danylo Shelemonchak</b> · Senior Full‑stack</span>
-      <span style="display: flex; gap: 18px;">${CONTACT.telegram ? html`<a href=${CONTACT.telegram} style="display: inline-flex; align-items: center; min-height: 48px;">Telegram</a>` : null}<a href="https://www.linkedin.com/in/danylo-shelemonchak" style="display: inline-flex; align-items: center; min-height: 48px;">LinkedIn</a><a href="mailto:shelemonchakdanil@gmail.com" style="display: inline-flex; align-items: center; min-height: 48px;">Email</a></span>
+      <span><b>Danylo Shelemonchak</b> · Senior Full-stack</span>
+      <nav aria-label="Contact" style="display: flex; gap: 18px;">${CONTACT.telegram ? html`<a href=${CONTACT.telegram} style="display: inline-flex; align-items: center; min-height: 48px;">Telegram</a>` : null}<a href="https://www.linkedin.com/in/danylo-shelemonchak" style="display: inline-flex; align-items: center; min-height: 48px;">LinkedIn</a><a href="mailto:shelemonchakdanil@gmail.com" style="display: inline-flex; align-items: center; min-height: 48px;">Email</a></nav>
     </div>
 
     <div style="flex: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 40px; padding-top: 40px;">
-      <div style="flex: 1 1 540px; min-width: 0; display: flex; flex-direction: column; gap: 22px; animation: rise .6s both;">
-        <span style="align-self: flex-start; padding: 6px 12px; border: 1px solid #3A3D44; border-radius: 4px; font-weight: 700; font-size: 15px; color: #D3CFC6;">Senior · 6 years of commercial SaaS · Remote from Ukraine</span>
-        <h1 style="margin: 0; font-weight: 800; font-size: clamp(42px, 7.4vw, 86px); line-height: 0.98; letter-spacing: -0.035em;">Full‑stack engineer.<br /><span style="color: #E9A93B;">Java Spring Boot</span> + Angular.</h1>
+      <div style="flex: 1 1 500px; min-width: 0; display: flex; flex-direction: column; gap: 22px; animation: rise .6s both;">
+        <span style="align-self: flex-start; padding: 6px 12px; border: 1px solid #3A3D44; border-radius: 4px; font-weight: 700; font-size: 15px; color: #D3CFC6;">Senior · 6 years of commercial SaaS · Remote from Ukraine (UTC+2) · English B2</span>
+        <h1 style="margin: 0; font-weight: 800; font-size: clamp(42px, 7.4vw, 86px); line-height: 0.98; letter-spacing: -0.035em;">Full-stack engineer.<br /><span style="color: #E9A93B;">Java Spring Boot</span> + Angular.</h1>
         <p style="margin: 0; max-width: 31em; font-size: 21px; line-height: 1.6; color: #D3CFC6;">I build business‑critical SaaS end to end: Angular interfaces, Spring Boot APIs and security, and the data underneath. Fintech, healthcare, education.</p>
         <ul aria-label="Core stack" style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px;">
           ${(v.chips || []).map((c) => html`
@@ -335,7 +331,7 @@ class App extends Component {
         </div>
       </div>
 
-      <figure class="fig" style="flex: 1 1 460px; min-width: 0; height: 560px; margin: 0; padding-bottom: 56px; box-sizing: border-box; position: relative; display: grid; place-items: center;">
+      <figure class="fig" style="flex: 1 1 420px; min-width: 0; height: 560px; margin: 0; padding-bottom: 56px; box-sizing: border-box; position: relative; display: grid; place-items: center;">
         <div class="stage" style="width: 420px; height: 520px; perspective: 1600px; display: grid; place-items: center;">
           <div role="img" aria-label="A 3D stack of five layers: frontend on top, then network, security, backend and data" style="position: relative; width: 300px; height: 300px; transform-style: preserve-3d; transform: rotateX(${v.rx}deg) rotateY(${v.ry}deg); transition: transform 1.8s cubic-bezier(.2,.8,.2,1);">
             ${(v.slabs || []).map((s) => html`
@@ -374,7 +370,8 @@ class App extends Component {
     </dl>
   </header>
 
-  <section id="ai" aria-labelledby="h-ai" style="position: relative; overflow: hidden; min-height: 640px; box-sizing: border-box; padding: 96px clamp(20px, 6vw, 80px); background: #1E3A3C; color: #F4EDE0; display: flex; flex-direction: column; gap: 48px;">
+  <main>
+  <section id="ai" aria-labelledby="h-ai" style="position: relative; overflow: hidden; min-height: 640px; box-sizing: border-box; padding: 96px max(clamp(20px, 6vw, 80px), calc((100% - 1000px) / 2)); background: #1E3A3C; color: #F4EDE0; display: flex; flex-direction: column; gap: 48px;">
     <div style="position: relative; display: flex; flex-direction: column; gap: 22px; max-width: 40em;">
       <span style="font-weight: 700; font-size: 16px; color: #E8C890;">AI‑assisted development</span>
       <h2 id="h-ai" style="margin: 0; font-family: 'Bricolage Grotesque', Manrope, sans-serif; font-weight: 700; font-variation-settings: 'opsz' 96; font-size: clamp(40px, 6.2vw, 78px); line-height: 1.02; letter-spacing: -0.02em;">AI makes me faster.<br /><span style="color: #F0C979;">I stay accountable.</span></h2>
@@ -382,7 +379,7 @@ class App extends Component {
     </div>
 
     <div style="position: relative; display: flex; flex-direction: column; gap: 28px;">
-      <div ref="${v.aiRef}" role="img" aria-label="Three AI helpers, an investigator, an implementer and an option scout, hand their notes, diff and options to a human review step. I ask for changes to the diff once, then approve everything." class="aigrid">
+      <div ref="${v.aiRef}" role="img" aria-label="Three AI helpers, an investigator, an implementer and an option scout, hand their notes, diff and options to a human review step. Every result comes to my review; I request changes until it meets my bar, then approve it." class="aigrid">
         <div aria-hidden="true" style="display: flex; flex-direction: column; gap: 14px; min-width: 0;">
           ${(v.lanes || []).map((a) => html`
             <div style="display: grid; grid-template-columns: minmax(130px, 170px) minmax(0, 1fr); gap: 14px; align-items: start;">
@@ -409,26 +406,26 @@ class App extends Component {
   </section>
 
   ${(v.worldsList || []).map((w) => html`
-    <section ref="${w.ref}" id="${w.id}" aria-labelledby="${w.hid}" style="position: relative; overflow: hidden; min-height: 680px; box-sizing: border-box; padding: 88px clamp(20px, 6vw, 80px); background: ${w.bg}; color: ${w.fg}; display: flex; flex-wrap: wrap; gap: 48px; align-items: center;">
-      <div style="position: relative; flex: 1 1 480px; min-width: 0; max-width: 34em; display: flex; flex-direction: column; gap: 18px; padding: ${w.panelPad}; background: ${w.panelBg};">
+    <section ref="${w.ref}" id="${w.id}" aria-labelledby="${w.hid}" style="position: relative; overflow: hidden; min-height: 680px; box-sizing: border-box; padding: 88px max(clamp(20px, 6vw, 80px), calc((100% - 1000px) / 2)); background: ${w.bg}; color: ${w.fg}; display: flex; flex-wrap: wrap; gap: 48px; align-items: center;">
+      <div style="position: relative; flex: 1 1 440px; min-width: 0; max-width: 34em; display: flex; flex-direction: column; gap: 18px; padding: ${w.panelPad}; background: ${w.panelBg};">
         <span style="font-weight: 700; font-size: 16px; color: ${w.kicker};">${w.no} · ${w.layer}</span>
         <h2 id="${w.hid}" style="margin: 0; font-family: ${w.font}; font-weight: 700; font-size: clamp(36px, 5.6vw, 64px); line-height: 1.02; text-shadow: ${w.hShadow};">${w.title}</h2>
         <p style="margin: 0; font-size: 20px; line-height: 1.6;">${w.sell}</p>
-        <ul aria-label="Skills" style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px;">
+        <ul aria-label="${w.layer + ' skills'}" style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px;">
           ${(w.skills || []).map((k) => html`<li style="padding: 7px 11px; border-radius: 4px; background: ${w.chipBg}; color: ${w.chipFg}; font-weight: 700; font-size: 15px;">${k}</li>`)}
         </ul>
         ${w.hasFlow ? html`
           <p style="margin: 0; font-family: 'Pixelify Sans', monospace; font-weight: 600; font-size: 18px; line-height: 1.4; color: ${w.kicker};">request ▸ controller ▸ service ▸ repository ▸ response</p>
         ` : null}
-        <button type="button" onClick="${w.toggle}" aria-expanded="${w.expanded}" style="align-self: flex-start; min-height: 48px; padding: 0 16px; border: 1.5px solid currentColor; border-radius: 6px; background: transparent; color: inherit; font: inherit; font-weight: 700; font-size: 16px; cursor: pointer;">${w.toggleLabel}</button>
+        <button type="button" onClick="${w.toggle}" aria-expanded="${w.expanded}" aria-controls="${'more-' + w.id}" style="align-self: flex-start; min-height: 48px; padding: 0 16px; border: 1.5px solid currentColor; border-radius: 6px; background: transparent; color: inherit; font: inherit; font-weight: 700; font-size: 16px; cursor: pointer;">${w.toggleLabel}</button>
         ${w.open ? html`
-          <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 17px; line-height: 1.55; opacity: .92; animation: rise .35s both;">
+          <ul id="${'more-' + w.id}" style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 17px; line-height: 1.55; opacity: .92; animation: rise .35s both;">
             ${(w.details || []).map((d) => html`<li>${d}</li>`)}
           </ul>
         ` : null}
       </div>
 
-      <figure style="position: relative; flex: 1 1 460px; min-width: 0; margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+      <figure style="position: relative; flex: 1 1 420px; min-width: 0; margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px;">
         ${w.hasHills ? html`
           <svg aria-hidden="true" viewBox="0 0 460 520" preserveAspectRatio="xMidYMax slice" style="position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; pointer-events: none;"><path d="M0 330 L70 250 L130 300 L210 215 L290 300 L350 245 L460 330 L460 520 L0 520Z" fill="#E7DAB9"></path><path d="M0 400 C 80 340, 160 360, 240 390 S 400 350, 460 380 L460 520 L0 520Z" fill="#DFD0A8"></path><path d="M0 460 C 100 415, 200 445, 300 435 S 420 425, 460 445 L460 520 L0 520Z" fill="#D6C697"></path></svg>
         ` : null}
@@ -465,10 +462,12 @@ class App extends Component {
     </section>
   `)}
 
-  <footer id="contact" style="position: relative; min-height: 520px; box-sizing: border-box; padding: 88px clamp(20px, 6vw, 80px); background: #F6F5F1; border-top: 1px solid #CFC9BD; color: #111111; display: flex; flex-direction: column; justify-content: center; gap: 22px;">
-    <span style="font-weight: 700; font-size: 16px; color: #55555A;">Hiring a full‑stack engineer for Java Spring Boot and Angular?</span>
+  </main>
+
+  <footer id="contact" style="position: relative; min-height: 520px; box-sizing: border-box; padding: 88px max(clamp(20px, 6vw, 80px), calc((100% - 1000px) / 2)); background: #F6F5F1; border-top: 1px solid #CFC9BD; color: #111111; display: flex; flex-direction: column; justify-content: center; gap: 22px;">
+    <span style="font-weight: 700; font-size: 16px; color: #55555A;">Hiring a full-stack engineer for Java Spring Boot and Angular?</span>
     <h2 style="margin: 0; font-weight: 800; font-size: clamp(38px, 6.4vw, 76px); line-height: 1; letter-spacing: -0.03em;">Let’s talk about your product.</h2>
-    <p style="margin: 0; max-width: 34em; font-size: 20px; line-height: 1.6; color: #2E2E33;">Senior, six years of SaaS, remote from Ukraine, English B2. Pick a door${CONTACT.telegram ? '; Telegram is the quickest' : ''}.</p>
+    <p style="margin: 0; max-width: 34em; font-size: 20px; line-height: 1.6; color: #2E2E33;">Senior, six years of SaaS, remote from Ukraine, English B2. Email or LinkedIn, whichever suits you${CONTACT.telegram ? '; Telegram is the quickest' : ''}.</p>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 20px; padding-top: 12px; max-width: 980px;">
       ${CONTACT.telegram ? html`<a class="cc" href=${CONTACT.telegram} style="--tilt: -2.5deg; background: #E9A93B; color: #111111;">
         <span aria-hidden="true" style="display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #111111; color: #E9A93B; font-weight: 800; font-size: 20px;">T</span>

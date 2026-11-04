@@ -23,7 +23,7 @@ The styles are **inspired by** Apple product pages, console UI (PlayStation), me
 | Hero | Console | Dark, warm | `#111214` / `#EEEBE4` | Manrope 800 | Exploded 3D stack, Angular on top to SQL at the bottom: "I own every layer" |
 | AI | Accountable AI | Deep teal | `#1E3A3C` / `#F4EDE0` | Bricolage Grotesque | Agents (investigator, implementer, option scout) send work to **Human review**: AI speeds me up, I stay responsible |
 | 01 | Studio (Frontend) | Light, product page | `#F6F5F1` / `#111111` | Manrope | One SPA shell, views swap in place, built from a shared component library |
-| 02 | Network | Ink teal, console | `#0B2A30` / `#E3F1F0` | Saira Condensed | Packet App to Cache to API; second trip is shorter; page speed score rises |
+| 02 | Network | Ink teal, console | `#0B2A30` / `#E3F1F0` | Saira Condensed | Packet App to Cache to API; the second trip is shorter because the cache answers |
 | 03 | Security | Parchment chronicle | `#EFE5CF` / `#2B2117` | EB Garamond | Castle with moat, drawbridge, gate and hills: every request is checked at the gate |
 | 04 | Backend | Dark workshop | `#2E2018` / `#F7EDE0` | Pixelify Sans | Blocks controller, service, repository; the request goes down and the response comes back up |
 | 05 | Data | Light mineral | `#E7E3DB` / `#1F1E1C` | Azeret Mono | The same person stored twice; duplicate rows merge into one and every link points at it |
@@ -33,7 +33,7 @@ Accent across all worlds: amber **`#E9A93B`**, used for the primary action, the 
 
 ## Building blocks
 
-- **Achievements**: unlockable tiles in the hero, styled like console trophies. Each holds a CV fact: Angular components contributed, page speed improvement, fields in one financial form. They unlock once on scroll.
+- **Achievements**: unlockable tiles in the hero, styled like console trophies. Each holds a CV fact: Angular components contributed and fields in one financial form. Page speed numbers are intentionally left out. They unlock once on scroll.
 - **AI block sits directly after the hero.** The message is "I use various AI tools to speed up investigation and implementation, and I am always responsible for quality". No specific tool or vendor is named.
 - **How it works**: each world has a toggle that reveals the technical caption. Closed by default.
 - **Contact cards**: large tilted cards that lift on hover. Email is the primary action.
@@ -46,6 +46,10 @@ Accent across all worlds: amber **`#E9A93B`**, used for the primary action, the 
 - **MOTION 2**: purposeful one-shot animations triggered on scroll (stack explode, packet travel, agent hand-off, row merge). Nothing loops forever. With `prefers-reduced-motion: reduce`, everything shows its final state with no animation.
 
 ## Readability rules
+
+- Content column is capped at **1000px**. Section backgrounds stay full width; the side padding grows to fill the rest (`max(clamp(20px, 6vw, 80px), calc((100% - 1000px) / 2))`).
+- Recruiter basics sit in the first screen: Senior, years, remote from Ukraine (UTC+2), English B2.
+- Copy states facts plainly. Metaphors live in the illustrations, not in the sentences.
 
 - Body text at least 17px desktop, 18 to 20px in the main paragraphs, line-height at least 1.5.
 - Text contrast at least 4.5:1 on its world background. Display fonts (Pixelify, Garamond, Saira) are only for headings; the body stays in a readable face.
