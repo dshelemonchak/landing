@@ -33,3 +33,4 @@ nav a{min-width:44px;justify-content:center}
 .cc:hover,.cc:focus-visible{transform:translateY(-8px) rotate(var(--tilt));box-shadow:0 16px 0 -6px rgba(17,17,17,.14)}
 @media (max-width:760px){.aigrid{grid-template-columns:minmax(0,1fr);gap:10px}.aicon{display:none}.aicirc{justify-self:center}.aidown{display:block;justify-self:center}.stagebox{height:350px!important}}
 @media (prefers-reduced-motion:reduce){.cc:hover,.cc:focus-visible{transform:none}}
+@media (min-width:761px){.pill{white-space:nowrap}}
