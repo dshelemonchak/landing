@@ -18,9 +18,10 @@ class App extends Component {
     super(p);
     this.rm = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
     const f = this.rm;
-    this.state = { ry: f ? -35 : 20, rx: f ? -22 : -8, open: f, openW: [false, false, false, false, false], seenW: [f, f, f, f, f], lateData: f, mid: f, spin: 0, view: 0, ai: f ? 5 : 0, net: f ? 6 : 0, tr: f ? 3 : 1, sink: f, gone: f, be: f ? 2 : 0 };
+    this.state = { ry: f ? -35 : 20, rx: f ? -22 : -8, open: f, openW: [false, false, false, false, false], seenW: [f, f, f, f, f], lateData: f, mid: f, spin: 0, view: 0, ai: f ? 5 : 0, net: f ? 6 : 0, tr: f ? 3 : 1, sink: f, gone: f, be: f ? 2 : 0, ps: f ? 3 : 0 };
     this.secs = []; this.secRefs = [0, 1, 2, 3, 4].map((i) => (el) => { this.secs[i] = el; });
     this.aiRef = (el) => { this.aiEl = el; };
+    this.procRef = (el) => { this.procEl = el; };
     this.timers = [];
   }
   after(ms, fn) { this.timers.push(setTimeout(fn, ms)); }
@@ -28,8 +29,15 @@ class App extends Component {
     if (this.rm) return;
     this.after(300, () => this.setState({ ry: -35, rx: -22, open: true }));
     [[900, 2], [1800, 3]].forEach((p) => this.after(p[0], () => this.setState({ tr: p[1] })));
-    if (typeof IntersectionObserver !== 'function') { this.setState({ seenW: [true, true, true, true, true], lateData: true, mid: true, sink: true, gone: true, ai: 5, net: 6, tr: 3, be: 2 }); return; }
+    if (typeof IntersectionObserver !== 'function') { this.setState({ seenW: [true, true, true, true, true], lateData: true, mid: true, sink: true, gone: true, ai: 5, net: 6, tr: 3, be: 2, ps: 3 }); return; }
     this.io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.target === this.procEl) {
+        if (e.isIntersecting && !this.procStarted) {
+          this.procStarted = true;
+          [[300, 1], [1600, 2], [2900, 3]].forEach((p) => this.after(p[0], () => this.setState({ ps: p[1] })));
+        }
+        return;
+      }
       if (e.target === this.aiEl) {
         if (e.isIntersecting && !this.aiStarted) {
           this.aiStarted = true;
@@ -46,6 +54,7 @@ class App extends Component {
     }), { threshold: 0.35 });
     this.secs.forEach((n) => n && this.io.observe(n));
     if (this.aiEl) this.io.observe(this.aiEl);
+    if (this.procEl) this.io.observe(this.procEl);
   }
   componentDidUpdate() {
     if (this.state.seenW[4] && !this.state.lateData && !this.dataStarted) {
@@ -115,6 +124,41 @@ class App extends Component {
     pk.td = '1s';
     o.push(pk);
     return o;
+  }
+
+  cubesProcess(ps) {
+    const M = 'Manrope, sans-serif', o = [];
+    const base = this.blk('', 0, 112, 0, 340, 12, 130, '#2A2C31', '#1F2125', '#34373E', '#EEEBE4', 14, M);
+    o.push(base);
+    const T = base.topY;
+    const steps = [
+      ['Investigate', -110, 46, ['#3A4152', '#2B303D', '#4D566B'], '#EEEBE4'],
+      ['Propose', 0, 92, ['#C9D3E6', '#9AA5BB', '#E3E9F3'], '#111214'],
+      ['Deliver', 110, 138, ['#E9A93B', '#B8822A', '#F5C66A'], '#111214'],
+    ];
+    const tops = steps.map(([t, x, h, c, fg], i) => {
+      const b = this.on(t, x, T, 0, 104, h, 96, ...c, fg, 15, M);
+      b.o = ps === 0 || ps > i ? 1 : 0.35;
+      o.push(b);
+      return b.topY;
+    });
+    const k = Math.max(1, ps) - 1;
+    const mk = this.blk('', steps[k][1], tops[k] - 1 - 13, 0, 26, 26, 26, '#FFFFFF', '#C9C5BC', '#FFFFFF', '#111214', 12, M);
+    mk.td = '1s';
+    mk.o = ps === 0 ? 0 : 1;
+    o.push(mk);
+    return o;
+  }
+
+  procVals() {
+    const ps = this.state.ps;
+    const steps = [
+      { n: '01', t: 'Investigate', d: 'I read the code, the data and the history, reproduce the problem and find the real cause, not just the symptom.' },
+      { n: '02', t: 'Propose', d: 'I come back with options and their trade-offs in plain words: effort, risk, and what each one means for users.' },
+      { n: '03', t: 'Deliver the best one', d: 'We pick the strongest option, I build it, test it and own the quality of the result.' },
+    ].map((x, i) => ({ ...x, on: ps > i, nbg: ps > i ? '#E9A93B' : 'transparent', nfg: ps > i ? '#111214' : '#B9B5AC', op: ps === 0 || ps > i ? 1 : 0.55 }));
+    return { ref: this.procRef, steps, cubes: this.cubesProcess(ps), rx: ps > 0 ? -18 : -8, ry: ps > 0 ? 28 : 50,
+      artLabel: 'Three 3D steps of rising height labelled Investigate, Propose and Deliver; a white marker climbs from the lowest step to the highest' };
   }
 
   cubesGate() {
@@ -282,8 +326,9 @@ class App extends Component {
       return { ...a, left: atEnd ? '100%' : '0%', tx: atEnd ? '-100%' : '0%', op: A >= 1 ? 1 : 0, bg: handed ? 'transparent' : a.color, fg: handed ? a.color : '#1E3A3C', ring: handed ? 'inset 0 0 0 2px ' + a.color : 'none', note, noteOp: note ? 1 : 0 };
     });
     const T = [
-      { big: '47', label: 'Angular components in a shared library, as the main contributor', clip: 'polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)', flex: '1 1 260px', bs: 64, nsz: '56px' },
-      { big: '836', label: 'fields in one financial form; I built about a third of them', clip: 'polygon(50% 0, 100% 50%, 50% 100%, 0 50%)', flex: '2 1 420px', bs: 96, nsz: 'clamp(60px, 7vw, 96px)' }
+      { big: '47', label: 'Angular components in a shared library, as the main contributor', clip: 'polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)', flex: '1 1 240px', bs: 64, nsz: '56px' },
+      { big: 'Rebuilt', label: 'the architecture of the whole form input system', clip: 'polygon(50% 0, 100% 38%, 82% 100%, 18% 100%, 0 38%)', flex: '1 1 260px', bs: 64, nsz: '44px' },
+      { big: '836', label: 'fields in one financial form; I built about a third of them', clip: 'polygon(50% 0, 100% 50%, 50% 100%, 0 50%)', flex: '1.3 1 300px', bs: 80, nsz: 'clamp(56px, 6vw, 80px)' }
     ];
     const trophies = T.map((t, i) => { const on = st.tr > i; return { ...t, status: on ? 'Shipped' : '\u00a0', nc: on ? (i === 2 ? '#E9A93B' : '#EEEBE4') : '#8B8E96', bb: on ? '#E9A93B' : '#3A3D44', sc: on ? 1 : 0.85 }; });
     return {
@@ -304,6 +349,7 @@ class App extends Component {
   }
   render() {
     const v = this.renderVals();
+    const pr = this.procVals();
     return html`<div style="position: relative; width: 100%; background: #111214; color: #EEEBE4; font-family: Manrope, sans-serif;">
 
   <header style="position: relative; overflow: hidden; min-height: 820px; box-sizing: border-box; padding: 0 max(clamp(20px, 6vw, 80px), calc((100% - 1000px) / 2)) 56px; display: flex; flex-direction: column;">
@@ -462,6 +508,41 @@ class App extends Component {
       </figure>
     </section>
   `)}
+
+  <section id="process" aria-labelledby="h-process" style="position: relative; overflow: hidden; box-sizing: border-box; padding: 96px max(clamp(20px, 6vw, 80px), calc((100% - 1000px) / 2)); background: #17181C; color: #EEEBE4; display: flex; flex-wrap: wrap; gap: 48px; align-items: center;">
+    <div style="flex: 1 1 440px; min-width: 0; max-width: 34em; display: flex; flex-direction: column; gap: 18px;">
+      <span style="font-weight: 700; font-size: 16px; color: #E9A93B;">How I take on a task</span>
+      <h2 id="h-process" style="margin: 0; font-family: 'Bricolage Grotesque', Manrope, sans-serif; font-weight: 800; font-size: clamp(36px, 5vw, 60px); line-height: 1.02; letter-spacing: -0.02em;">Understand first.<br />Then build the best option.</h2>
+      <p style="margin: 0; font-size: 19px; line-height: 1.6; color: #D3CFC6;">Before writing code I find out what is really going on. Then I put options on the table and build the one that gives the best result.</p>
+      <ol ref="${pr.ref}" style="margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 18px;">
+        ${pr.steps.map((st) => html`
+          <li style="display: flex; gap: 16px; align-items: flex-start; opacity: ${st.op}; transition: opacity .6s;">
+            <span aria-hidden="true" style="flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 2px solid #E9A93B; background: ${st.nbg}; color: ${st.nfg}; font-weight: 800; font-size: 15px; transition: background .5s, color .5s;">${st.n}</span>
+            <span style="display: flex; flex-direction: column; gap: 4px;"><b style="font-size: 20px;">${st.t}</b><span style="font-size: 17px; line-height: 1.55; color: #C9C5BC;">${st.d}</span></span>
+          </li>
+        `)}
+      </ol>
+    </div>
+    <figure style="position: relative; flex: 1 1 420px; min-width: 0; margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+      <div class="stagebox" style="position: relative; width: 100%; height: 420px; display: grid; place-items: center;">
+        <div class="stage" style="width: 460px; height: 420px; perspective: 1400px; display: grid; place-items: center;">
+          <div role="img" aria-label="${pr.artLabel}" style="position: relative; width: 260px; height: 260px; transform-style: preserve-3d; transform: rotateX(${pr.rx}deg) rotateY(${pr.ry}deg); transition: transform 1.2s cubic-bezier(.2,.8,.2,1);">
+            ${pr.cubes.map((c) => html`
+                <div style="position: absolute; left: ${c.x}px; top: ${c.y}px; width: ${c.w}px; height: ${c.h}px; transform-style: preserve-3d; transform: translateZ(${c.z}px); transition: left ${c.td} cubic-bezier(.2,.8,.2,1), top ${c.td} cubic-bezier(.2,.8,.2,1), transform ${c.td} cubic-bezier(.2,.8,.2,1);">
+                  <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: 0; top: 0; width: ${c.w}px; height: ${c.h}px; background: ${c.front}; transform: translateZ(${c.dz}px); display: grid; place-items: center; text-align: center; padding: ${c.pad}px; box-sizing: border-box; line-height: 1.1; font-family: ${c.font}; font-weight: 700; font-size: calc(${c.fs}px * var(--lbl, 1)); color: ${c.fg};">${c.t}</span>
+                  <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: 0; top: 0; width: ${c.w}px; height: ${c.h}px; background: ${c.front}; transform: rotateY(180deg) translateZ(${c.dz}px);"></span>
+                  <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: ${c.sl}px; top: 0; width: ${c.d}px; height: ${c.h}px; background: ${c.side}; transform: rotateY(90deg) translateZ(${c.wz}px);"></span>
+                  <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: ${c.sl}px; top: 0; width: ${c.d}px; height: ${c.h}px; background: ${c.side}; transform: rotateY(-90deg) translateZ(${c.wz}px);"></span>
+                  <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: 0; top: ${c.tt}px; width: ${c.w}px; height: ${c.d}px; background: ${c.top}; transform: rotateX(90deg) translateZ(${c.hz}px);"></span>
+                  <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: 0; top: ${c.tt}px; width: ${c.w}px; height: ${c.d}px; background: ${c.side}; transform: rotateX(-90deg) translateZ(${c.hz}px);"></span>
+                </div>
+            `)}
+          </div>
+        </div>
+      </div>
+      <figcaption style="text-align: center; font-size: 16px; line-height: 1.45; color: #C9C5BC;">Every task climbs the same three steps.</figcaption>
+    </figure>
+  </section>
 
   </main>
 
