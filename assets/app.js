@@ -67,7 +67,13 @@ class App extends Component {
   }
   componentWillUnmount() { this.timers.forEach(clearTimeout); if (this.io) this.io.disconnect(); }
 
-  box(t, x, y, z, w, h, d, front, side, top, fg, fs, font) { return { t, x, y, z, w, h, d, dz: d / 2, wz: w / 2, hz: h / 2, sl: (w - d) / 2, tt: (h - d) / 2, front, side, top, fg, fs: fs || 16, font: font || 'Manrope, sans-serif', pad: t ? 3 : 0, td: '.7s', o: 1 }; }
+  box(t, x, y, z, w, h, d, front, side, top, fg, fs, font) { return { t, x, y, z, w, h, d, dz: d / 2, wz: w / 2, hz: h / 2, sl: (w - d) / 2, tt: (h - d) / 2, front, side, top, fg, fs: fs || 16, fit: this.fit(t, w, h, fs || 16, font), font: font || 'Manrope, sans-serif', pad: t ? 3 : 0, td: '.7s', o: 1 }; }
+  // Largest font size (px) at which label t stays on one line inside a w x h face; mono and pixel fonts run wider.
+  fit(t, w, h, fs, font) {
+    if (!t) return fs;
+    const wide = /Mono|Pixelify/.test(font || '') ? 0.66 : (/Saira/.test(font || '') ? 0.5 : 0.6);
+    return Math.max(8, Math.floor(Math.min(fs * 1.2, (h - 2) / 1.05, (w - 10) / (String(t).length * wide))));
+  }
   blk(t, cx, cy, cz, w, h, d, front, side, top, fg, fs, font) { const b = this.box(t, 130 + cx - w / 2, 130 + cy - h / 2, cz, w, h, d, front, side, top, fg, fs, font); b.topY = cy - h / 2; b.botY = cy + h / 2; return b; }
   on(t, cx, base, cz, w, h, d, ...r) { return this.blk(t, cx, base - 1 - h / 2, cz, w, h, d, ...r); }
   shift(list, dz) { list.forEach((c) => { c.z += dz; }); return list; }
@@ -484,7 +490,7 @@ class App extends Component {
             <div role="img" aria-label="${w.artLabel}" style="position: relative; width: 260px; height: 260px; transform-style: preserve-3d; transform: rotateX(${w.rx}deg) rotateY(${w.ry}deg); transition: transform 1.2s cubic-bezier(.2,.8,.2,1);">
               ${(w.cubes || []).map((c) => html`
                 <div style="position: absolute; left: ${c.x}px; top: ${c.y}px; width: ${c.w}px; height: ${c.h}px; transform-style: preserve-3d; transform: translateZ(${c.z}px); transition: left ${c.td} cubic-bezier(.2,.8,.2,1), top ${c.td} cubic-bezier(.2,.8,.2,1), transform ${c.td} cubic-bezier(.2,.8,.2,1);">
-                  <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: 0; top: 0; width: ${c.w}px; height: ${c.h}px; background: ${c.front}; transform: translateZ(${c.dz}px); display: grid; place-items: center; text-align: center; padding: ${c.pad}px; box-sizing: border-box; line-height: 1.1; font-family: ${c.font}; font-weight: 700; font-size: calc(${c.fs}px * var(--lbl, 1)); color: ${c.fg};">${c.t}</span>
+                  <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: 0; top: 0; width: ${c.w}px; height: ${c.h}px; background: ${c.front}; transform: translateZ(${c.dz}px); display: grid; place-items: center; text-align: center; padding: ${c.pad}px; box-sizing: border-box; line-height: 1; white-space: nowrap; overflow: hidden; font-family: ${c.font}; font-weight: 700; font-size: min(calc(${c.fs}px * var(--lbl, 1)), ${c.fit}px); color: ${c.fg};">${c.t}</span>
                   <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: 0; top: 0; width: ${c.w}px; height: ${c.h}px; background: ${c.front}; transform: rotateY(180deg) translateZ(${c.dz}px);"></span>
                   <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: ${c.sl}px; top: 0; width: ${c.d}px; height: ${c.h}px; background: ${c.side}; transform: rotateY(90deg) translateZ(${c.wz}px);"></span>
                   <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: ${c.sl}px; top: 0; width: ${c.d}px; height: ${c.h}px; background: ${c.side}; transform: rotateY(-90deg) translateZ(${c.wz}px);"></span>
@@ -529,7 +535,7 @@ class App extends Component {
           <div role="img" aria-label="${pr.artLabel}" style="position: relative; width: 260px; height: 260px; transform-style: preserve-3d; transform: rotateX(${pr.rx}deg) rotateY(${pr.ry}deg); transition: transform 1.2s cubic-bezier(.2,.8,.2,1);">
             ${pr.cubes.map((c) => html`
                 <div style="position: absolute; left: ${c.x}px; top: ${c.y}px; width: ${c.w}px; height: ${c.h}px; transform-style: preserve-3d; transform: translateZ(${c.z}px); transition: left ${c.td} cubic-bezier(.2,.8,.2,1), top ${c.td} cubic-bezier(.2,.8,.2,1), transform ${c.td} cubic-bezier(.2,.8,.2,1);">
-                  <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: 0; top: 0; width: ${c.w}px; height: ${c.h}px; background: ${c.front}; transform: translateZ(${c.dz}px); display: grid; place-items: center; text-align: center; padding: ${c.pad}px; box-sizing: border-box; line-height: 1.1; font-family: ${c.font}; font-weight: 700; font-size: calc(${c.fs}px * var(--lbl, 1)); color: ${c.fg};">${c.t}</span>
+                  <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: 0; top: 0; width: ${c.w}px; height: ${c.h}px; background: ${c.front}; transform: translateZ(${c.dz}px); display: grid; place-items: center; text-align: center; padding: ${c.pad}px; box-sizing: border-box; line-height: 1; white-space: nowrap; overflow: hidden; font-family: ${c.font}; font-weight: 700; font-size: min(calc(${c.fs}px * var(--lbl, 1)), ${c.fit}px); color: ${c.fg};">${c.t}</span>
                   <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: 0; top: 0; width: ${c.w}px; height: ${c.h}px; background: ${c.front}; transform: rotateY(180deg) translateZ(${c.dz}px);"></span>
                   <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: ${c.sl}px; top: 0; width: ${c.d}px; height: ${c.h}px; background: ${c.side}; transform: rotateY(90deg) translateZ(${c.wz}px);"></span>
                   <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: ${c.sl}px; top: 0; width: ${c.d}px; height: ${c.h}px; background: ${c.side}; transform: rotateY(-90deg) translateZ(${c.wz}px);"></span>
