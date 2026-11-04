@@ -100,20 +100,17 @@ class App extends Component {
     const base = this.blk('', 0, 97, 0, 250, 14, 220, '#14535B', '#0F4249', '#1E6D75', '#E3F1F0', 16, SC);
     o.push(base);
     const T = base.topY;
-    o.push(this.on('~20', -35, T, -55, 56, 30, 50, '#2B6068', '#1F4A50', '#3D8088', '#E3F1F0', 24, SC));
-    o.push(this.on('75–80', 35, T, -55, 56, 90, 50, '#7FDED6', '#4FB0A8', '#B5F2EC', DK, 24, SC));
-    o.push(this.blk('Page speed score', 0, -40, -55, 150, 26, 6, '#E3F1F0', '#9FC3C0', '#FFFFFF', DK, 18, SC));
-    const app = this.on('App', -90, T, 55, 56, 56, 56, '#E3F1F0', '#9FC3C0', '#FFFFFF', DK, 24, SC);
+    const app = this.on('App', -90, T, 0, 56, 56, 56, '#E3F1F0', '#9FC3C0', '#FFFFFF', DK, 24, SC);
     o.push(app);
-    o.push(this.on('Cache', 0, T, 55, 56, 56, 56, '#7FDED6', '#4FB0A8', '#B5F2EC', DK, 24, SC));
-    o.push(this.on('API', 90, T, 55, 56, 56, 56, '#F0C979', '#B8934A', '#F8E3B0', DK, 24, SC));
+    o.push(this.on('Cache', 0, T, 0, 56, 56, 56, '#7FDED6', '#4FB0A8', '#B5F2EC', DK, 24, SC));
+    o.push(this.on('API', 90, T, 0, 56, 56, 56, '#F0C979', '#B8934A', '#F8E3B0', DK, 24, SC));
     const my = (app.topY + app.botY) / 2;
-    o.push(this.blk('', -45, my, 55, 32, 4, 4, '#7FDED6', '#4FB0A8', '#B5F2EC', DK, 12, SC));
-    o.push(this.blk('', 45, my, 55, 32, 4, 4, '#7FDED6', '#4FB0A8', '#B5F2EC', DK, 12, SC));
+    o.push(this.blk('', -45, my, 0, 32, 4, 4, '#7FDED6', '#4FB0A8', '#B5F2EC', DK, 12, SC));
+    o.push(this.blk('', 45, my, 0, 32, 4, 4, '#7FDED6', '#4FB0A8', '#B5F2EC', DK, 12, SC));
     const xs = [-90, 0, 90, 0, -90, 0, -90], sz = [12, 12, 12, 18, 18, 12, 8];
     const s = sz[net], full = net === 3 || net === 4, back = net === 6;
     const col = full ? ['#F0C979', '#B8934A', '#F8E3B0'] : (back ? ['#F0C979', '#B8934A', '#F8E3B0'] : ['#FFFFFF', '#9FC3C0', '#FFFFFF']);
-    const pk = this.blk('', xs[net], app.topY - 1 - s / 2, 55, s, s, s, ...col, DK, 12, SC);
+    const pk = this.blk('', xs[net], app.topY - 1 - s / 2, 0, s, s, s, ...col, DK, 12, SC);
     pk.td = '1s';
     o.push(pk);
     return o;
@@ -246,9 +243,9 @@ class App extends Component {
       { id: 'signal', no: '02', layer: 'Network', title: 'Fast, responsive apps.', font: "'Saira Condensed', sans-serif", bg: '#0B2A30', fg: '#E3F1F0', kicker: '#9FD0CC', panelBg: 'transparent', panelPad: '0', chipBg: '#E3F1F0', chipFg: '#0B2A30', hShadow: '0 0 18px rgba(127,222,214,.3)',
         sell: 'I design REST APIs and caching together, so pages open quickly, stay responsive, and the server only sends what actually changed.',
         skills: ['REST APIs', 'HTTP caching', 'Performance'],
-        details: ['Server‑side caching with ETag and Cache‑Control, revision‑aware invalidation and server‑generated routing data.', 'Helped lift the Lighthouse performance score from about 20 to 75–80 through data‑loading optimisations.', 'Consistent REST resources with structured error responses.'],
-        artLabel: 'A 3D console: a packet travels from App to Cache to API and back, then a second time from App to Cache and back with a smaller answer; two columns show the page speed score rising from about 20 to 75 to 80',
-        caption: netCaption + ' Page speed score (Lighthouse): I helped raise it from about 20 to 75–80.',
+        details: ['Server‑side caching with ETag and Cache‑Control, revision‑aware invalidation and server‑generated routing data.', 'Consistent REST resources with structured error responses.'],
+        artLabel: 'A 3D console: a packet travels from App to Cache to API and back, then a second time from App to Cache and back with a smaller answer',
+        caption: netCaption,
         rx: -20, ry: 28, cubes: this.cubesSignal(net) },
       { id: 'gate', no: '03', layer: 'Security', title: 'The right people, the right access.', font: "'EB Garamond', serif", bg: '#EFE5CF', fg: '#2B2117', kicker: '#7A1F1A', panelBg: 'transparent', panelPad: '0', chipBg: '#7A1F1A', chipFg: '#F7EFDC', hShadow: 'none',
         sell: 'Authentication and access rules for products sold under several brands, built with Spring Security and JWT. Every entry is checked, like a castle with one well‑guarded gate.',
@@ -285,7 +282,6 @@ class App extends Component {
     });
     const T = [
       { big: '47', label: 'Angular components, as principal contributor', clip: 'polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)', flex: '1 1 260px', bs: 64, nsz: '56px' },
-      { big: '~20 → 75–80', label: 'page speed score (Lighthouse), which I helped raise', clip: 'circle(50%)', flex: '1 1 300px', bs: 64, nsz: '36px' },
       { big: '836', label: 'fields in one financial form I co‑built, about a third mine', clip: 'polygon(50% 0, 100% 50%, 50% 100%, 0 50%)', flex: '2 1 420px', bs: 96, nsz: 'clamp(60px, 7vw, 96px)' }
     ];
     const trophies = T.map((t, i) => { const on = st.tr > i; return { ...t, status: on ? 'Unlocked' : 'Locked', nc: on ? (i === 2 ? '#E9A93B' : '#EEEBE4') : '#8B8E96', bb: on ? '#E9A93B' : '#3A3D44', sc: on ? 1 : 0.85 }; });
