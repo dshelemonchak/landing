@@ -1,6 +1,7 @@
 body{margin:0;background:#111214}
 a{color:inherit}
-a:focus-visible,button:focus-visible{outline:3px solid #111214;outline-offset:2px;box-shadow:0 0 0 6px #E9A93B}
+a:focus-visible,button:focus-visible{outline:3px solid #E9A93B;outline-offset:3px;box-shadow:0 0 0 3px #111214}
+nav a{min-width:44px;justify-content:center}
 .stage{transform:scale(1);transform-origin:50% 50%}
 @media (max-width:760px){.stage{transform:scale(.62)}.fig{height:400px!important}header .fig{height:400px!important}}
 @keyframes stroke{from{stroke-dashoffset:1600}to{stroke-dashoffset:0}}
