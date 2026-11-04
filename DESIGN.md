@@ -50,7 +50,7 @@ Accent across all worlds: amber **`#E9A93B`**, used for the primary action, the 
 ## Readability rules
 
 - Content column is capped at **1000px**. Section backgrounds stay full width; the side padding grows to fill the rest (`max(clamp(20px, 6vw, 80px), calc((100% - 1000px) / 2))`).
-- Recruiter basics sit in the first screen: Senior, years, remote from Ukraine (UTC+2), English B2.
+- Recruiter basics sit in the first screen: Senior, years, remote from Ukraine, English B2.
 - Copy states facts plainly. Metaphors live in the illustrations, not in the sentences.
 
 - Body text at least 17px desktop, 18 to 20px in the main paragraphs, line-height at least 1.5.

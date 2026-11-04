@@ -365,8 +365,8 @@ class App extends Component {
     </div>
 
     <div style="flex: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 40px; padding-top: 40px;">
-      <div style="flex: 1 1 500px; min-width: 0; display: flex; flex-direction: column; gap: 22px; animation: rise .6s both;">
-        <span style="align-self: flex-start; padding: 6px 12px; border: 1px solid #3A3D44; border-radius: 4px; font-weight: 700; font-size: 15px; color: #D3CFC6;">Senior · 6 years of commercial SaaS · Remote from Ukraine (UTC+2) · English B2</span>
+      <div style="flex: 1 1 570px; min-width: 0; display: flex; flex-direction: column; gap: 22px; animation: rise .6s both;">
+        <span class="pill" style="align-self: flex-start; padding: 6px 12px; border: 1px solid #3A3D44; border-radius: 4px; font-weight: 700; font-size: 15px; color: #D3CFC6;">Senior · 6 years of commercial SaaS · Remote from Ukraine · English B2</span>
         <h1 style="margin: 0; font-weight: 800; font-size: clamp(42px, 7.4vw, 86px); line-height: 0.98; letter-spacing: -0.035em;">Full-stack engineer.<br /><span style="color: #E9A93B;">Java Spring Boot</span> + Angular.</h1>
         <p style="margin: 0; max-width: 31em; font-size: 21px; line-height: 1.6; color: #D3CFC6;">I build business‑critical SaaS end to end: Angular interfaces, Spring Boot APIs and security, and the data underneath. Fintech, healthcare, education.</p>
         <ul aria-label="Core stack" style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px;">
@@ -384,7 +384,7 @@ class App extends Component {
         </div>
       </div>
 
-      <figure class="fig" style="flex: 1 1 420px; min-width: 0; height: 560px; margin: 0; padding-bottom: 56px; box-sizing: border-box; position: relative; display: grid; place-items: center;">
+      <figure class="fig" style="flex: 1 1 380px; min-width: 0; height: 560px; margin: 0; padding-bottom: 56px; box-sizing: border-box; position: relative; display: grid; place-items: center;">
         <div class="stage" style="width: 420px; height: 520px; perspective: 1600px; display: grid; place-items: center;">
           <div role="img" aria-label="A 3D stack of five layers: frontend on top, then network, security, backend and data" style="position: relative; width: 300px; height: 300px; transform-style: preserve-3d; transform: rotateX(${v.rx}deg) rotateY(${v.ry}deg); transition: transform 1.8s cubic-bezier(.2,.8,.2,1);">
             ${(v.slabs || []).map((s) => html`
