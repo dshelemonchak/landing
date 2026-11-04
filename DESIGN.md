@@ -37,6 +37,7 @@ Accent across all worlds: amber **`#E9A93B`**, used for the primary action, the 
 - **AI block sits directly after the hero.** The message is "I use various AI tools to speed up investigation and implementation, and I am always responsible for quality". No specific tool or vendor is named.
 - **How it works**: each world has a toggle that reveals the technical caption. Closed by default.
 - **Contact cards**: large tilted cards that lift on hover. Email is the primary action.
+- **GitHub** (github.com/dshelemonchak) appears in the top bar, the contact cards and the structured data.
 - **Telegram is hidden** until the account is ready. Every Telegram element is driven by `CONTACT.telegram` at the top of `assets/app.js`. Set it to the URL and the top-bar link, hero button and contact card come back. It stays `null` until then.
 
 ## Dials
@@ -64,6 +65,8 @@ No em dashes in copy. No gradient washes. No cards with a colored left border. N
 
 - Static site, no build step. `index.html` loads `assets/site.css` and `assets/app.js`.
 - `app.js` is Preact + htm, vendored in `assets/vendor/` (no CDN). It was generated from the approved V6 design file, then edited by hand for the contact config.
+- Fonts are self-hosted in `assets/fonts/` under the SIL OFL 1.1, with license files alongside. The page makes no third-party requests. Saira Condensed ships unmodified because of its Reserved Font Name; see `assets/fonts/README.md`.
+- On mobile the 3D scenes scale to the screen (0.78 / 0.72 / 0.64) and labels grow by 1.15x, so scene text stays at about 13px or more.
 - 3D is pure CSS transforms (`preserve-3d`); there is no WebGL.
 - `index.html` contains a plain-text fallback with name, role and contacts for crawlers and no-JS readers.
 - Deployed by `.github/workflows/pages.yml` on every push to `main`.

@@ -10,6 +10,7 @@ const CONTACT = {
   telegram: null,
   email: 'shelemonchakdanil@gmail.com',
   linkedin: 'https://www.linkedin.com/in/danylo-shelemonchak',
+  github: 'https://github.com/dshelemonchak',
 };
 
 class App extends Component {
@@ -308,7 +309,7 @@ class App extends Component {
   <header style="position: relative; overflow: hidden; min-height: 820px; box-sizing: border-box; padding: 0 max(clamp(20px, 6vw, 80px), calc((100% - 1000px) / 2)) 56px; display: flex; flex-direction: column;">
     <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid #2A2C31; font-size: 16px;">
       <span><b>Danylo Shelemonchak</b> · Senior Full-stack</span>
-      <nav aria-label="Contact" style="display: flex; gap: 18px;">${CONTACT.telegram ? html`<a href=${CONTACT.telegram} style="display: inline-flex; align-items: center; min-height: 48px;">Telegram</a>` : null}<a href="https://www.linkedin.com/in/danylo-shelemonchak" style="display: inline-flex; align-items: center; min-height: 48px;">LinkedIn</a><a href="mailto:shelemonchakdanil@gmail.com" style="display: inline-flex; align-items: center; min-height: 48px;">Email</a></nav>
+      <nav aria-label="Contact" style="display: flex; gap: 18px;">${CONTACT.telegram ? html`<a href=${CONTACT.telegram} style="display: inline-flex; align-items: center; min-height: 48px;">Telegram</a>` : null}<a href="https://www.linkedin.com/in/danylo-shelemonchak" style="display: inline-flex; align-items: center; min-height: 48px;">LinkedIn</a><a href=${CONTACT.github} style="display: inline-flex; align-items: center; min-height: 48px;">GitHub</a><a href="mailto:shelemonchakdanil@gmail.com" style="display: inline-flex; align-items: center; min-height: 48px;">Email</a></nav>
     </div>
 
     <div style="flex: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 40px; padding-top: 40px;">
@@ -337,16 +338,16 @@ class App extends Component {
             ${(v.slabs || []).map((s) => html`
               <div style="position: absolute; left: 0; top: 0; width: 300px; height: 300px; transform-style: preserve-3d; transform: translateY(${s.y}px); transition: transform 1.6s cubic-bezier(.2,.8,.2,1); transition-delay: ${s.d};">
                 <span style="position: absolute; left: 0; top: 0; width: 300px; height: 300px; background: ${s.top}; transform: rotateX(90deg) translateZ(18px); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);"></span>
-                <span style="position: absolute; left: 0; top: 132px; width: 300px; height: 36px; background: ${s.front}; transform: translateZ(150px); display: flex; align-items: center; padding: 0 14px; box-sizing: border-box; font-family: ${s.font}; font-weight: 700; font-size: 18px; color: ${s.fg};">${s.label}</span>
+                <span style="position: absolute; left: 0; top: 132px; width: 300px; height: 36px; background: ${s.front}; transform: translateZ(150px); display: flex; align-items: center; padding: 0 14px; box-sizing: border-box; font-family: ${s.font}; font-weight: 700; font-size: calc(18px * var(--lbl, 1)); color: ${s.fg};">${s.label}</span>
                 <span style="position: absolute; left: 0; top: 132px; width: 300px; height: 36px; background: ${s.side}; transform: rotateY(90deg) translateZ(150px);"></span>
                 <span style="position: absolute; left: 0; top: 132px; width: 300px; height: 36px; background: ${s.side}; transform: rotateY(-90deg) translateZ(150px);"></span>
-                <span style="position: absolute; left: 0; top: 132px; width: 300px; height: 36px; background: ${s.front}; transform: rotateY(180deg) translateZ(150px); display: flex; align-items: center; padding: 0 14px; box-sizing: border-box; font-family: ${s.font}; font-weight: 700; font-size: 18px; color: ${s.fg};">${s.label}</span>
+                <span style="position: absolute; left: 0; top: 132px; width: 300px; height: 36px; background: ${s.front}; transform: rotateY(180deg) translateZ(150px); display: flex; align-items: center; padding: 0 14px; box-sizing: border-box; font-family: ${s.font}; font-weight: 700; font-size: calc(18px * var(--lbl, 1)); color: ${s.fg};">${s.label}</span>
               </div>
             `)}
           </div>
         </div>
         <figcaption style="position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: center; gap: 10px;">
-          <button type="button" onClick="${v.spinL}" disabled="${v.spinLDis}" aria-label="Rotate the stack left" style="opacity: ${v.spinLOp}; width: 48px; height: 48px; border-radius: 50%; border: 1px solid #3A3D44; background: #1B1D21; color: #EEEBE4; font-size: 18px; cursor: pointer;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="display:block;margin:auto;transform:scaleX(1)"><path d="M5 12a7 7 0 1 0 2.3-5.2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path><path d="M4 3v5h5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+          <button type="button" onClick="${v.spinL}" disabled="${v.spinLDis}" aria-label="Rotate the stack left" style="opacity: ${v.spinLOp}; width: 48px; height: 48px; border-radius: 50%; border: 1px solid #3A3D44; background: #1B1D21; color: #EEEBE4; font-size: calc(18px * var(--lbl, 1)); cursor: pointer;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="display:block;margin:auto;transform:scaleX(1)"><path d="M5 12a7 7 0 1 0 2.3-5.2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path><path d="M4 3v5h5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
           <button type="button" onClick="${v.toggleExplode}" style="min-height: 48px; padding: 0 18px; border-radius: 24px; border: 1px solid #3A3D44; background: #1B1D21; color: #EEEBE4; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer;">${v.explodeLabel}</button>
           <button type="button" onClick="${v.spinR}" disabled="${v.spinRDis}" aria-label="Rotate the stack right" style="opacity: ${v.spinROp}; width: 48px; height: 48px; border-radius: 50%; border: 1px solid #3A3D44; background: #1B1D21; color: #EEEBE4; font-size: 18px; cursor: pointer;"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="display:block;margin:auto;transform:scaleX(-1)"><path d="M5 12a7 7 0 1 0 2.3-5.2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path><path d="M4 3v5h5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
         </figcaption>
@@ -437,7 +438,7 @@ class App extends Component {
             <div role="img" aria-label="${w.artLabel}" style="position: relative; width: 260px; height: 260px; transform-style: preserve-3d; transform: rotateX(${w.rx}deg) rotateY(${w.ry}deg); transition: transform 1.2s cubic-bezier(.2,.8,.2,1);">
               ${(w.cubes || []).map((c) => html`
                 <div style="position: absolute; left: ${c.x}px; top: ${c.y}px; width: ${c.w}px; height: ${c.h}px; transform-style: preserve-3d; transform: translateZ(${c.z}px); transition: left ${c.td} cubic-bezier(.2,.8,.2,1), top ${c.td} cubic-bezier(.2,.8,.2,1), transform ${c.td} cubic-bezier(.2,.8,.2,1);">
-                  <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: 0; top: 0; width: ${c.w}px; height: ${c.h}px; background: ${c.front}; transform: translateZ(${c.dz}px); display: grid; place-items: center; text-align: center; padding: ${c.pad}px; box-sizing: border-box; line-height: 1.1; font-family: ${c.font}; font-weight: 700; font-size: ${c.fs}px; color: ${c.fg};">${c.t}</span>
+                  <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: 0; top: 0; width: ${c.w}px; height: ${c.h}px; background: ${c.front}; transform: translateZ(${c.dz}px); display: grid; place-items: center; text-align: center; padding: ${c.pad}px; box-sizing: border-box; line-height: 1.1; font-family: ${c.font}; font-weight: 700; font-size: calc(${c.fs}px * var(--lbl, 1)); color: ${c.fg};">${c.t}</span>
                   <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: 0; top: 0; width: ${c.w}px; height: ${c.h}px; background: ${c.front}; transform: rotateY(180deg) translateZ(${c.dz}px);"></span>
                   <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: ${c.sl}px; top: 0; width: ${c.d}px; height: ${c.h}px; background: ${c.side}; transform: rotateY(90deg) translateZ(${c.wz}px);"></span>
                   <span style="opacity: ${c.o}; transition: opacity .9s; position: absolute; left: ${c.sl}px; top: 0; width: ${c.d}px; height: ${c.h}px; background: ${c.side}; transform: rotateY(-90deg) translateZ(${c.wz}px);"></span>
@@ -467,7 +468,7 @@ class App extends Component {
   <footer id="contact" style="position: relative; min-height: 520px; box-sizing: border-box; padding: 88px max(clamp(20px, 6vw, 80px), calc((100% - 1000px) / 2)); background: #F6F5F1; border-top: 1px solid #CFC9BD; color: #111111; display: flex; flex-direction: column; justify-content: center; gap: 22px;">
     <span style="font-weight: 700; font-size: 16px; color: #55555A;">Hiring a full-stack engineer for Java Spring Boot and Angular?</span>
     <h2 style="margin: 0; font-weight: 800; font-size: clamp(38px, 6.4vw, 76px); line-height: 1; letter-spacing: -0.03em;">Let’s talk about your product.</h2>
-    <p style="margin: 0; max-width: 34em; font-size: 20px; line-height: 1.6; color: #2E2E33;">Senior, six years of SaaS, remote from Ukraine, English B2. Email or LinkedIn, whichever suits you${CONTACT.telegram ? '; Telegram is the quickest' : ''}.</p>
+    <p style="margin: 0; max-width: 34em; font-size: 20px; line-height: 1.6; color: #2E2E33;">Senior, six years of SaaS, remote from Ukraine, English B2. Email or LinkedIn, whichever suits you, and my code is on GitHub${CONTACT.telegram ? '; Telegram is the quickest' : ''}.</p>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 20px; padding-top: 12px; max-width: 980px;">
       ${CONTACT.telegram ? html`<a class="cc" href=${CONTACT.telegram} style="--tilt: -2.5deg; background: #E9A93B; color: #111111;">
         <span aria-hidden="true" style="display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #111111; color: #E9A93B; font-weight: 800; font-size: 20px;">T</span>
@@ -477,12 +478,17 @@ class App extends Component {
       <a class="cc" href="mailto:shelemonchakdanil@gmail.com" style="--tilt: 2deg; background: #111111; color: #F6F5F1;">
         <span aria-hidden="true" style="display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #F6F5F1; color: #111111; font-weight: 800; font-size: 20px;">@</span>
         <span style="font-weight: 800; font-size: 24px;">Email</span>
-        <span style="font-weight: 600; font-size: 18px; overflow-wrap: anywhere;">shelemonchakdanil@gmail.com</span>
+        <span style="font-weight: 600; font-size: 18px;">shelemonchakdanil@<wbr />gmail.com</span>
       </a>
       <a class="cc" href="https://www.linkedin.com/in/danylo-shelemonchak" style="--tilt: -1.5deg; background: #C9D3E6; color: #111111;">
         <span aria-hidden="true" style="display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #111111; color: #C9D3E6; font-weight: 800; font-size: 18px;">in</span>
         <span style="font-weight: 800; font-size: 24px;">LinkedIn</span>
         <span style="font-weight: 600; font-size: 18px; overflow-wrap: anywhere;">danylo-shelemonchak</span>
+      </a>
+      <a class="cc" href=${CONTACT.github} style="--tilt: 2.5deg; background: #E9A93B; color: #111111;">
+        <span aria-hidden="true" style="display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #111111; color: #E9A93B; font-weight: 800; font-size: 17px;">gh</span>
+        <span style="font-weight: 800; font-size: 24px;">GitHub</span>
+        <span style="font-weight: 600; font-size: 18px; overflow-wrap: anywhere;">dshelemonchak</span>
       </a>
     </div>
   </footer>
