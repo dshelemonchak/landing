@@ -27,13 +27,14 @@ The styles are **inspired by** Apple product pages, console UI (PlayStation), me
 | 03 | Security | Parchment chronicle | `#EFE5CF` / `#2B2117` | EB Garamond | Castle with moat, drawbridge, gate and hills: every request is checked at the gate |
 | 04 | Backend | Dark workshop | `#2E2018` / `#F7EDE0` | Pixelify Sans | Blocks controller, service, repository; the request goes down and the response comes back up |
 | 05 | Data | Light mineral | `#E7E3DB` / `#1F1E1C` | Azeret Mono | The same person stored twice; duplicate rows merge into one and every link points at it |
+| Process | How I take on a task | Near-black | `#17181C` / `#EEEBE4` | Bricolage Grotesque heading, Manrope body | Three rising steps, Investigate, Propose and Deliver, with a marker climbing to the top: I understand the problem first, offer options, then build the best one |
 | Footer | Contact | Light | `#F6F5F1` / `#111111` | Manrope | Playful tilted contact cards |
 
 Accent across all worlds: amber **`#E9A93B`**, used for the primary action, the hero's "Java Spring Boot" line, and unlocked achievements.
 
 ## Building blocks
 
-- **Achievements**: unlockable tiles in the hero, styled like console trophies. Each holds a CV fact: Angular components contributed and fields in one financial form. Page speed numbers are intentionally left out. They unlock once on scroll.
+- **Achievements**: unlockable tiles in the hero, styled like console trophies. Each holds a CV fact: Angular components contributed, the rebuilt architecture of the whole form input system, and fields in one financial form. Page speed numbers are intentionally left out. They unlock once on scroll.
 - **AI block sits directly after the hero.** The message is "I use various AI tools to speed up investigation and implementation, and I am always responsible for quality". No specific tool or vendor is named.
 - **How it works**: each world has a toggle that reveals the technical caption. Closed by default.
 - **Contact cards**: large tilted cards that lift on hover. Email is the primary action.
