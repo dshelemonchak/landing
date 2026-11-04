@@ -331,7 +331,7 @@ class App extends Component {
     const lanes = defs.map((a, i) => {
       const atEnd = i === 1 ? (A === 2 || A >= 4) : A >= 2, handed = A >= 4;
       const note = (i === 1 && A === 3) ? 'changes requested' : (A >= 4 ? (i === 1 ? 'revised, approved' : 'approved') : '');
-      return { ...a, left: atEnd ? '100%' : '0%', tx: atEnd ? '-100%' : '0%', op: A >= 1 ? 1 : 0, bg: handed ? 'transparent' : a.color, fg: handed ? a.color : '#1E3A3C', ring: handed ? 'inset 0 0 0 2px ' + a.color : 'none', note, noteOp: note ? 1 : 0 };
+      return { ...a, top: atEnd ? '100%' : '0%', ty: atEnd ? '-100%' : '0%', left: atEnd ? '100%' : '0%', tx: atEnd ? '-100%' : '0%', op: A >= 1 ? 1 : 0, bg: handed ? 'transparent' : a.color, fg: handed ? a.color : '#1E3A3C', ring: handed ? 'inset 0 0 0 2px ' + a.color : 'none', note, noteOp: note ? 1 : 0 };
     });
     const T = [
       { big: '47', label: 'Angular components in a shared library, as the main contributor', clip: 'polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)', flex: '1 1 240px', bs: 64, nsz: '56px' },
@@ -348,7 +348,7 @@ class App extends Component {
       slabs: S.map((s, i) => ({ ...s, y: (i - 2) * gap, d: (i * 0.06) + 's' })),
       chips: ['Java 17', 'Spring Boot 3', 'Spring Security', 'JPA', 'REST APIs', 'Angular 16–21', 'TypeScript', 'RxJS', 'AI‑assisted development'].map((t, i) => ({ t, bg: i < 5 ? '#E9A93B' : (i < 8 ? '#2A2C31' : '#1E3A3C'), fg: i < 5 ? '#111214' : '#EEEBE4' })),
       trophies,
-      aiRef: this.aiRef, lanes,
+      aiRef: this.aiRef, lanes, mob: st.mob,
       reviewScale: A >= 4 ? 1.08 : (A === 3 ? 1.04 : 1), checkOp: A >= 4 ? 1 : 0, ownOp: A >= 5 ? 1 : 0,
       worldsList: W.map((w, i) => ({ ...w, hasFlow: i === 3, hasFloor: i === 3, hasHills: i === 2, hasViews: i === 0,
         views: i === 0 ? viewNames.map((n, k) => ({ label: n, pressed: st.view === k ? 'true' : 'false', bg: st.view === k ? '#111111' : 'transparent', fg: st.view === k ? '#F6F5F1' : '#111111', click: () => this.setState({ view: k }) })) : [],
@@ -435,6 +435,20 @@ class App extends Component {
 
     <div style="position: relative; display: flex; flex-direction: column; gap: 28px;">
       <div ref="${v.aiRef}" role="img" aria-label="Three AI helpers, an investigator, an implementer and an option scout, hand their notes, diff and options to a human review step. Every result comes to my review; I request changes until it meets my bar, then approve it." class="aigrid">
+        ${v.mob ? html`
+        <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; min-width: 0;">
+          ${(v.lanes || []).map((a) => html`
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; min-width: 0;">
+              <span style="flex: none; width: 20px; height: 20px; background: ${a.color}; border-radius: ${a.radius}; transform: rotate(${a.rot});"></span>
+              <span style="min-height: 2.5em; font-size: 16px; font-weight: 700; line-height: 1.25; color: #E9E1D2;">${a.agent}</span>
+              <span style="position: relative; display: block; width: 100%; height: 150px;">
+                <span style="position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; transform: translateX(-50%); border-radius: 2px; background: rgba(240,201,121,.25);"></span>
+                <span style="position: absolute; left: 50%; top: ${a.top}; transform: translate(-50%, ${a.ty}); transition: top 1.1s cubic-bezier(.3,.8,.3,1) ${a.delay}, transform 1.1s cubic-bezier(.3,.8,.3,1) ${a.delay}, opacity .5s, background .5s; opacity: ${a.op}; padding: 6px 12px; border-radius: 22px; background: ${a.bg}; color: ${a.fg}; box-shadow: ${a.ring}; font-weight: 700; font-size: 15px; white-space: nowrap;">${a.chip}</span>
+              </span>
+              <span style="min-height: 2.6em; font-size: 14px; font-weight: 700; line-height: 1.3; color: #F0C979; opacity: ${a.noteOp}; transition: opacity .4s;">${a.note}</span>
+            </div>
+          `)}
+        </div>` : html`
         <div aria-hidden="true" style="display: flex; flex-direction: column; gap: 14px; min-width: 0;">
           ${(v.lanes || []).map((a) => html`
             <div style="display: grid; grid-template-columns: minmax(130px, 170px) minmax(0, 1fr); gap: 14px; align-items: start;">
@@ -447,7 +461,8 @@ class App extends Component {
             </div>
           `)}
         </div>
-        <svg class="aicon" aria-hidden="true" width="56" height="220" viewBox="0 0 56 220" style="display: block;"><path d="M0 24 C 28 24, 28 110, 54 110 M0 102 C 20 102, 30 110, 54 110 M0 180 C 28 180, 28 110, 54 110" fill="none" stroke="#F0C979" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"></path></svg>
+        `}
+        <svg class="aicon" aria-hidden="true" width="56" height="220" viewBox="0 0 56 220"><path d="M0 24 C 28 24, 28 110, 54 110 M0 102 C 20 102, 30 110, 54 110 M0 180 C 28 180, 28 110, 54 110" fill="none" stroke="#F0C979" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"></path></svg>
         <svg class="aidown" aria-hidden="true" width="40" height="40" viewBox="0 0 40 40"><path d="M20 6 V32 M10 22 L20 33 L30 22" fill="none" stroke="#F0C979" stroke-opacity=".6" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         <div class="aicirc" aria-hidden="true" style="width: 190px; height: 190px; border-radius: 50%; background: #F0C979; color: #1E3A3C; display: grid; place-items: center; text-align: center; transform: scale(${v.reviewScale}); transition: transform .7s cubic-bezier(.3,1.4,.4,1);">
           <span style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
